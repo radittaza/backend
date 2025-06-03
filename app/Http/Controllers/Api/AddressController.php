@@ -31,14 +31,11 @@ class AddressController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage for the authenticated user.
-     */
     public function store(Request $request)
     {
         $user = Auth::user();
         $validator = Validator::make($request->all(), [
-            'full_name' => 'required|string|max:255',
+            'full_name' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:20',
             'full_address' => 'nullable|string|max:1000',
@@ -65,9 +62,7 @@ class AddressController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource if it belongs to the authenticated user.
-     */
+
     public function show(Address $address)
     {
         if (Auth::id() !== $address->user_id) {
@@ -81,9 +76,6 @@ class AddressController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage if it belongs to the authenticated user.
-     */
     public function update(Request $request, Address $address)
     {
         if (Auth::id() !== $address->user_id) {

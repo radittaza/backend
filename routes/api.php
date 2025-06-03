@@ -15,7 +15,7 @@ Route::get('/storage-files/{filePath}', function ($filePath) {
     $type = Storage::disk('public')->mimeType($filePath);
 
     $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
+    $response->header('Content-Type', $type);
 
     return $response;
 })->where('filePath', '.*');
@@ -37,6 +37,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'user']);
+        Route::put('user/update', [AuthController::class, 'updateUser']);
+        Route::put('user/password', [AuthController::class, 'updatePassword']);
+        Route::post('user/profile-picture', [AuthController::class, 'updateProfilePicture']);
     });
 
     Route::post('/', [\App\Http\Controllers\Api\BankTransferController::class, 'store'])->name('store');

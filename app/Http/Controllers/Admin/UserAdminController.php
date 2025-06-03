@@ -41,7 +41,7 @@ class UserAdminController extends Controller
             'username' => 'required|string|max:255|unique:users,username',
             'full_name' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => ['required', 'confirmed', Rules\Password::min(8)], // Menggunakan Rules\Password
+            'password' => ['required', 'confirmed', Rules\Password::min(8)],
             'phone' => 'nullable|string|max:20',
             'role' => 'required|in:user,admin',
             'status' => 'required|in:active,pending,suspend',
@@ -68,7 +68,7 @@ class UserAdminController extends Controller
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
             'full_name' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => ['nullable', 'confirmed', Rules\Password::min(8)], /
+            'password' => ['nullable', 'confirmed', Rules\Password::min(8)],
             'phone' => 'nullable|string|max:20',
             'role' => 'required|in:user,admin',
             'status' => 'required|in:active,pending,suspend',
